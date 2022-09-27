@@ -1,5 +1,5 @@
-load(":buf.bzl", "buf_formatter")
+load(":buf.bzl", "format")
 
-buf_formatter(
-    name = "buf_formatter",
+format(
+    name = "format",
 )

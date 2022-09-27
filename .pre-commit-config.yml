@@ -1,0 +1,46 @@
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: check-json # checks json files for parseable syntax.
+      - id: check-merge-conflict # checks for files that contain merge conflict strings.
+      - id: check-symlinks # checks for symlinks which do not point to anything.
+      - id: check-yaml # checks yaml files for parseable syntax.
+      - id: destroyed-symlinks # detects symlinks which are changed to regular files with a content of a path which that symlink was pointing to.
+      - id: detect-private-key # detects the presence of private keys.
+      - id: end-of-file-fixer # ensures that a file is either empty, or ends with one newline.
+      - id: forbid-new-submodules # prevents addition of new git submodules.
+      - id: mixed-line-ending # replaces or checks mixed line ending.
+        args:
+          - --fix=lf
+      - id: no-commit-to-branch # don't commit to branch
+        args:
+          - --branch=master
+      - id: trailing-whitespace # trims trailing whitespace.
+
+  # Add local hooks here according to
+  # https://pre-commit.com/#repository-local-hooks.
+  - repo: local
+    hooks:
+      - id: buildifier
+        name: buildifier
+        description: This hook runs buildifier to format Bazel config files.
+        entry: bazel run //tools/buildifier -- -lint=fix -v
+        language: system
+        files: |
+          (?x)(
+              \.bazel|
+              \.bzl|
+              BUILD|
+              WORKSPACE
+          )$
+      - id: buf-format
+        name: buf-format
+        description: This hook runs buf-format to format proto files.
+        entry: bazel run //tools/buf:format
+        language: system
+        files: |
+          (?x)(
+              \.proto
+          )$

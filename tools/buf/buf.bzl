@@ -1,6 +1,6 @@
 _TOOLCHAIN = "@rules_buf//tools/buf:toolchain_type"
 
-def _buf_formatter_impl(ctx):
+def _buf_format_impl(ctx):
     buf = ctx.toolchains[_TOOLCHAIN].cli
 
     ctx.actions.write(
@@ -20,8 +20,8 @@ def _buf_formatter_impl(ctx):
         ),
     ]
 
-buf_formatter = rule(
-    implementation = _buf_formatter_impl,
+format = rule(
+    implementation = _buf_format_impl,
     toolchains = [_TOOLCHAIN],
     executable = True,
 )
