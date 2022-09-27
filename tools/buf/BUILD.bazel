@@ -1,0 +1,5 @@
+load(":buf.bzl", "buf_formatter")
+
+buf_formatter(
+    name = "buf_formatter",
+)
