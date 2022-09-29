@@ -44,3 +44,21 @@ repos:
           (?x)(
               \.proto
           )$
+      - id: gazelle
+        name: gazelle
+        description: This hook runs gazelle to udpate BUILD.bazel
+        entry: ./tools/pre-commit-gazelle/run-gazelle.sh
+        language: script
+        files: |
+          (?x)(
+          \.go
+          )$
+      - id: gazelle-update-repos
+        name: gazelle-update-repos
+        description: This hook runs gazelle update-repos to udpate deps.bzl
+        entry: ./tools/pre-commit-gazelle/run-gazelle-update-repos.sh
+        language: script
+        files: |
+          (?x)(
+          go.mod
+          )$

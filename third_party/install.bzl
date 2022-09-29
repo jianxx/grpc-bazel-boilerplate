@@ -19,6 +19,7 @@ load("@rules_buf//buf:repositories.bzl", "rules_buf_dependencies", "rules_buf_to
 # Protobuf
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
 
 def install():
     """Install all the rules"""
@@ -33,6 +34,8 @@ def install():
     gazelle_dependencies()
 
     # Protobuf
+    rules_proto_grpc_toolchains()
+    rules_proto_grpc_repos()
     rules_proto_dependencies()
     rules_proto_toolchains()
     protobuf_deps()

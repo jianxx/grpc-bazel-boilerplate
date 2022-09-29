@@ -55,6 +55,13 @@ def dependencies():
         ],
     )
 
+    http_archive(
+        name = "rules_proto_grpc",
+        sha256 = "bbe4db93499f5c9414926e46f9e35016999a4e9f6e3522482d3760dc61011070",
+        strip_prefix = "rules_proto_grpc-4.2.0",
+        urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/4.2.0.tar.gz"],
+    )
+
     # CC
     http_archive(
         name = "rules_cc",
